@@ -420,7 +420,7 @@
             <fieldset class="repeating_meleeattacks">
                 <div class='mattack-grid-container' >
                     <input class='mattack-label parchment' type="text" value="" title='Weapon name that will display in template header' name="attr_weapon_attack" placeholder="Weapon Name" />
-                    <button class='meleedice' type='roll' title='Strike (Attack) Roll with Damage' name='roll_meleeattack' value="@{whispertoggle}&{template:custom} {{color=blue}} {{title=**@{nametoggle}**}} {{subtitle=attacks with @{weapon_attack}}} {{Attack= [[d20cs>@{hth_critical}+@{weapon_strike}[strike]+@{strike}[HtH]+@{pp_bonus}[PP]+@{mtemp_strike}[temp]]]}} {{Damage= [[@{weapon_damage}+@{damage}[HtH]+@{ps_bonus}[PS]+@{mtemp_damage}[temp]]]}} {{desc=@{mattack_reference}}}">Strike</button>
+                    <button class='meleedice' type='roll' title='Strike (Attack) Roll with Damage' name='roll_meleeattack' value="@{whispertoggle}&{template:custom} {{color=blue}} {{title=**@{nametoggle}**}} {{subtitle=attacks with @{weapon_attack}}} {{Attack= [[d20cs>@{critical}+@{weapon_strike}[strike]+@{strike}[HtH]+@{pp_bonus}[PP]+@{mtemp_strike}[temp]]]}} {{Damage= [[@{weapon_damage}+@{damage}[HtH]+@{ps_bonus}[PS]+@{mtemp_damage}[temp]]]}} {{desc=@{mattack_reference}}}">Strike</button>
                     <button class='meleedice' type='roll' title='Parry Roll' name='roll_meleeparry' value="@{whispertoggle}&{template:custom} {{color=grey}} {{title=**@{nametoggle}**}} {{subtitle=parries with @{weapon_attack}}} {{Parry= [[d20+@{weapon_parry}[parry]+@{parry}[HtH]+@{pp_bonus}[PP]+@{mtemp_parry}[temp]]]}}">Parry</button>
                     <button class='meleedice' type='roll' title='Damage Roll' name='roll_meleedamage' value="@{whispertoggle}&{template:custom} {{color=red}} {{title=**@{nametoggle}**}} {{subtitle=lashes out}} {{@{nametoggle}'s @{weapon_attack} deals= [[@{weapon_damage}+@{damage}[HtH]+@{ps_bonus}[PS]+@{mtemp_damage}[temp]]]}} {{desc=@{mattack_reference}}}">Damage</button>
                     <input class='damage-dice parchment' type="text" title='Damage Dice Calculation other than HtH and PS' value="" name="attr_weapon_damage" placeholder="xdy+z" />
@@ -2403,7 +2403,7 @@ on("change:spd change:combatskill change:hth1_numberattacks change:hth2_numberat
 });
 
 // Hand to Hand Skill Toggle
-on('change:combatskill', () => {
+on('change:combatskill sheet:opened', () => {
     getAttrs(['combatskill'], values => {
         const skills = ['initiative', 'strike', 'parry', 'dodge', 'damage', 'disarm', 'knockout', 'pullpunch', 'rollpunch', 'entangle', 'critical', 'numberattacks'];
         const output = {};
